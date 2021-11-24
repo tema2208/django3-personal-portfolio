@@ -1,0 +1,20 @@
+{% extends 'portfolio\base.html' %}
+{% block content %}
+
+<h1>Hello blog</h1>
+
+<h2>Artem has written {{ projects.count }} blog{{ blogs.count|pluralize }}</h2>
+
+{% for project in projects %}
+
+<a href="{% url 'blog:detail' project.id %}"><h2>{{ project.title }}</h2></a>
+<p>{{ project.data_time|date:'M d Y' }}</p>
+<p>{{ project.description|striptags|truncatechars:100 }}</p>
+{% if project.url %}
+<br><a href = "{{ project.url }}">Link</a>
+{% endif %}
+
+
+{% endfor %}
+
+{% endblock %}

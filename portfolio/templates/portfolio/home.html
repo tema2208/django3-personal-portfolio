@@ -1,0 +1,23 @@
+{% extends 'portfolio\base.html' %}
+{% block content %}
+    <h1>This is my portfolio</h1>
+
+    {% load static %}
+
+    <img src="{% static 'portfolio\IMG_6584.jpg' %}" height = 100 wigth = 100>
+    <a href="{% static 'portfolio\my_portfolio.pdf' %}">Resume</a>
+
+    <a href="{% url 'blog:all_blogs' %}">Blogs</a>
+
+    {% for project in projects %} <!-- если словарь то двойные фигурные скобки -->
+
+    <h2>{{ project.title }}</h2>
+    <p>{{ project.description }}</p>
+    <img src = "{{ project.image.url }}" height = 100 wigth = 100>
+    {% if project.url %}
+    <br><a href = "{{ project.url }}">Link</a>
+    {% endif %} <!-- если project.url существует то нужно отобразить значение тега a, иначе просто пропустить-->
+
+    {% endfor %}
+
+{% endblock %}
